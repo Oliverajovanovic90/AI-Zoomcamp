@@ -1,0 +1,5 @@
+venv/
+django-todo/venv/
+__pycache__/
+*.pyc
+db.sqlite3
