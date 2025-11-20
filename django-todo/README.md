@@ -1,6 +1,6 @@
-# 📝 Django TODO App (AI Zoomcamp Lesson)
+# 📝 Django TODO App (build an application with AI)
 
-A simple Django TODO application created for AI Zoomcamp homework.  
+A simple Django TODO application created using AI ChatGPT.  
 This project demonstrates basic Django setup: project, app, models, views, templates, and running the server.
 
 ---
@@ -8,26 +8,28 @@ This project demonstrates basic Django setup: project, app, models, views, templ
 ## 🚀 Setup
 
 ### 1. Create & activate virtual environment
-```bash
 python -m venv venv
 source venv/bin/activate
-2. Install Django
+
+### 2. Install Django
 bash
 Copy code
 pip install django
-3. Create project and app
+
+### 3. Create project and app
 bash
 Copy code
 django-admin startproject config .
 python manage.py startapp todos
-Add to config/settings.py:
 
+Add to config/settings.py:
 python
 Copy code
 INSTALLED_APPS = [
     ...
     'todos',
 ]
+
 🗃️ Model (todos/models.py)
 python
 Copy code
@@ -39,25 +41,29 @@ class Todo(models.Model):
 
     def __str__(self):
         return self.title
-Run migrations:
 
+
+### Run migrations:
 bash
 Copy code
 python manage.py makemigrations
 python manage.py migrate
-🌐 Views (todos/views.py)
+
+## 🌐 Views (todos/views.py)
 python
 Copy code
 def home(request):
     todos = Todo.objects.all().order_by("due_date")
     return render(request, "home.html", {"todos": todos})
-🌍 URLs
+    
+## 🌍 URLs
 todos/urls.py
 python
 Copy code
 urlpatterns = [
     path("", views.home, name="home"),
 ]
+
 config/urls.py
 python
 Copy code
@@ -65,7 +71,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("todos.urls")),
 ]
-🖼️ Templates
+
+## 🖼️ Templates
 Set template directory in settings.py
 python
 Copy code
@@ -81,6 +88,8 @@ Copy code
 {% block content %}{% endblock %}
 </body>
 </html>
+
+
 templates/home.html
 html
 Copy code
@@ -95,7 +104,8 @@ Copy code
     {% endfor %}
 </ul>
 {% endblock %}
-▶️ Run server
+
+## ▶️ Run server
 bash
 Copy code
 python manage.py runserver
